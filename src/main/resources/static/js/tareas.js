@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await fetch(`http://localhost:8080/tarea/usuario/${idUsuario}`);
         if (!response.ok) throw new Error("Error al cargar las tareas");
-
         const tareas = await response.json();
         const lista = document.getElementById("listaTareas");
         lista.innerHTML = "";
