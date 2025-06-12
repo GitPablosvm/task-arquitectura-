@@ -16,10 +16,15 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             localStorage.setItem("idUsuario", data.idUsuario);
             // Redirigir a tareas.html
             window.location.href = "tareas.html";
-        } else if (response.status === 401) {
-            alert("Usuario o contraseña incorrectos. ¿Deseas registrarte?");
-            window.location.href = "registro.html";
-        } else {
+        }else if (response.status === 401) {
+            // Mostrar mensaje de error visual
+            const errorDiv = document.getElementById("errorMensaje");
+            errorDiv.classList.remove("hidden");
+            // Borrar solo la contraseña
+            document.getElementById("pass").value = "";
+        }
+
+        else {
             alert("Error desconocido.");
         }
     } catch (error) {
