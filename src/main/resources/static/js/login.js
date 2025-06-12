@@ -17,8 +17,9 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             // Redirigir a tareas.html
             window.location.href = "tareas.html";
         } else if (response.status === 401) {
-            alert("Usuario o contraseña incorrectos. ¿Deseas registrarte?");
-            window.location.href = "registro.html";
+            alert("Usuario o contraseña incorrectos. Vuelva a intentarlo");
+            //Borramos solo la contraseña
+            document.getElementById("pass").value = "";
         } else {
             alert("Error desconocido.");
         }
