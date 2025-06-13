@@ -12,23 +12,19 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         });
 
         if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem("idUsuario", data.idUsuario);
-            // Redirigir a tareas.html
-            window.location.href = "tareas.html";
-        }else if (response.status === 401) {
-            // Mostrar mensaje de error visual
-            const errorDiv = document.getElementById("errorMensaje");
-            errorDiv.classList.remove("hidden");
-            // Borrar solo la contraseña
-            document.getElementById("pass").value = "";
-        }
-
-        else {
-            alert("Error desconocido.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Ocurrió un error. Intenta de nuevo más tarde.");
-    }
+                    const data = await response.json();
+                    localStorage.setItem("idUsuario", data.idUsuario);
+                    localStorage.setItem("nombreUsuario", data.nombre); // <-- acá el nombre
+                    window.location.href = "tareas.html";
+                } else if (response.status === 401) {
+                    const errorDiv = document.getElementById("errorMensaje");
+                    errorDiv.classList.remove("hidden");
+                    document.getElementById("pass").value = "";
+                } else {
+                    alert("Error desconocido.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Ocurrió un error. Intenta de nuevo más tarde.");
+            }
 });

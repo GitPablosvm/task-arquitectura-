@@ -47,11 +47,11 @@ public class UsuarioController {
 
         if (usuario != null && usuario.getPass().equals(password)) {
             Map<String, Object> response = new HashMap<>();
-            response.put("mensaje", "Login exitoso");
             response.put("idUsuario", usuario.getIdUsuario());
+            response.put("nombre", usuario.getNombre());
             return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 }

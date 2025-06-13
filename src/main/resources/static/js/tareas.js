@@ -1,14 +1,23 @@
 window.addEventListener("DOMContentLoaded", async () => {
     const idUsuario = localStorage.getItem("idUsuario");
-    if (!idUsuario) {
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+    if (!idUsuario || !nombreUsuario) {
         alert("No estás logueado.");
         window.location.href = "login.html";
         return;
     }
 
+    // Mostrar el nombre del usuario
+    const nombreSpan = document.getElementById("nombreUsuario");
+    if (nombreSpan) {
+        nombreSpan.textContent = nombreUsuario;
+    }
+
     try {
         const response = await fetch(`http://localhost:8080/tarea/usuario/${idUsuario}`);
         if (!response.ok) throw new Error("Error al cargar las tareas");
+
         const tareas = await response.json();
         const lista = document.getElementById("listaTareas");
         lista.innerHTML = "";
@@ -37,7 +46,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         alert("Error al cargar las tareas.");
     }
 });
-//Marcar tarea como completada
+
+// Marcar tarea como completada
 async function marcarCompleta(id) {
     try {
         const response = await fetch(`http://localhost:8080/tarea/${id}/completar`, {
@@ -54,7 +64,7 @@ async function marcarCompleta(id) {
     }
 }
 
-//Editar tarea
+// Editar tarea
 async function editarTarea(id) {
     const nuevaDescripcion = prompt("Ingrese la nueva descripción de la tarea:");
     if (nuevaDescripcion === null || nuevaDescripcion.trim() === "") {
@@ -79,7 +89,7 @@ async function editarTarea(id) {
     }
 }
 
-//Eliminar tarea
+// Eliminar tarea
 async function eliminarTarea(id) {
     if (!confirm("¿Estás seguro de que deseas eliminar esta tarea?")) return;
 
