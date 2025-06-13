@@ -17,16 +17,13 @@
 <div class="container mx-auto py-8 max-w-2xl px-4">
     <!-- Botón Cerrar sesión -->
     <div class="absolute top-6 right-6">
-        <button onclick="cerrarSesion()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition">
-            Cerrar sesión
-        </button>
+            <button id="logoutBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition">Cerrar Sesión</button>
     </div>
-
+    <!-- Ver nombre del usuario registrado -->
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold text-center text-green-800 mb-6">
             Las tareas de <span id="nombreUsuario" class="text-blue-800"></span> son:
         </h1>
-        <span id="nombreUsuario" class="text-lg font-semibold"></span>
     </div>
 
     <div id="listaTareas" class="space-y-2">
@@ -51,7 +48,7 @@
             </div>
             <div class="mb-4">
                 <label for="horaInicio" class="block text-gray-700">Hora de Inicio</label>
-                <input type="number" id="duracion" name="duracion" step="0.1" min="0.1" class="w-full px-3 py-2 border rounded">
+                <input type="datetime-local" id="horaInicio" name="horaInicio" class="w-full px-3 py-2 border rounded">
             </div>
             <div class="mb-4">
                 <label for="duracion" class="block text-gray-700">Duración (horas)</label>
@@ -71,7 +68,7 @@
 
 
 <script src="js/tareas.js"></script>
-
+<script src="js/logout.js"></script>
 <script>
     function abrirModal() {
         document.getElementById('modalNuevaTarea').classList.remove('hidden');
